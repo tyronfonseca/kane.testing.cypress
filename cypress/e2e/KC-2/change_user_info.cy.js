@@ -42,7 +42,7 @@ describe("Change User Information Tests", () => {
         cy.get('.md > .md > .md:nth-child(2) > .ion-align-self-center > .md').click()
     }
 
-    const updatedSuccesfully = () => {
+    const updatedSuccessfully = () => {
 
 
         cy.intercept({
@@ -69,7 +69,7 @@ describe("Change User Information Tests", () => {
 
         cy.get('.md > div > .form > .buttons > .button:nth-child(2)').click()
 
-        updatedSuccesfully()
+        updatedSuccessfully()
 
         cy.get('.md > div > .md > .item:nth-child(4) > .md').click()
 
@@ -79,7 +79,7 @@ describe("Change User Information Tests", () => {
 
         cy.get('.md > div > .form > .buttons > .button:nth-child(2)').click()
 
-        updatedSuccesfully()
+        updatedSuccessfully()
 
         cy.get('.md > div > .md > .item:nth-child(5) > .md').click()
 
@@ -89,7 +89,7 @@ describe("Change User Information Tests", () => {
 
         cy.get('.md > div > .form > .buttons > .button:nth-child(2)').click()
 
-        updatedSuccesfully()
+        updatedSuccessfully()
 
         cy.get('.md > div > .md > .item:nth-child(6) > .md').click()
 
@@ -97,7 +97,7 @@ describe("Change User Information Tests", () => {
 
         cy.contains('span', 'Actualizar').click()
 
-        updatedSuccesfully()
+        updatedSuccessfully()
 
 
         clearInputsAndLogOut()
