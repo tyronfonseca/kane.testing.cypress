@@ -35,7 +35,7 @@ describe('register_user', function() {
 
         cy.intercept({
             method: 'POST',
-            url: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDiG-IqGOgC_t5Rmw4zM_CcRi8PG5UtPXk',
+            url: 'https://identitytoolkit.googleapis.com/v1/*',
         }).as('createAccount')
 
         cy.wait('@createAccount').its('response.statusCode').should('eq', 400 || 200)
