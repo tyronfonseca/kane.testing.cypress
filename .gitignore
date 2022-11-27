@@ -132,3 +132,6 @@ dist
 .idea/*
 
 package-lock.json
+
+cypress/screenshots/*
+cypress/videos/*
