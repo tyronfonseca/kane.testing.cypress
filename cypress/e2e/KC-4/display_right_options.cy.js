@@ -7,7 +7,7 @@ describe("Display Right Options Tests", () => {
         cy.get("ion-button").should("contain", "Iniciar sesión").first().click()
     }
 
-    it("load_the_four_options_correctly_when_enter", () => {
+    it("KC-1001-1_load_the_four_options_correctly_when_enter", () => {
         logIn()
 
         cy.get('.md > #container > div > .sc-ion-input-md-h > .native-input').click()
