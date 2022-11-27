@@ -29,7 +29,7 @@ describe("Change User Information Tests", () => {
 
         cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').click()
 
-        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').type(' 32')
+        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').clear().type('65321254')
 
         cy.get('.md > div > .form > .buttons > .button:nth-child(2)').click()
 
@@ -44,7 +44,6 @@ describe("Change User Information Tests", () => {
 
     const updatedSuccessfully = () => {
 
-
         cy.intercept({
             method: 'POST',
             url: '  https://firestore.googleapis.com/google.firestore.v1.Firestore/Write/*',
@@ -53,11 +52,9 @@ describe("Change User Information Tests", () => {
         cy.wait('@updateInfo').its('response.statusCode').should('eq', 200)
     }
 
-    it("KC-13-1 ", () => {
+    it("KC-13-1_should_update_info_successfully ", () => {
         //act
         enterProfilePage()
-
-
 
 
         cy.get('.md > div > .md > .item:nth-child(3) > .md').click()
@@ -101,6 +98,70 @@ describe("Change User Information Tests", () => {
 
 
         clearInputsAndLogOut()
+
+
+    });
+
+    const notUpdatedSuccessfullyInterceptor = () => {
+
+        cy.intercept({
+            method: 'POST',
+            url: '  https://firestore.googleapis.com/google.firestore.v1.Firestore/Write/*',
+        }).as('updateInfo')
+
+        cy.wait('@updateInfo').its('response.statusCode').should('not.eq', 200)
+    }
+
+    it("KC-13-2_should_not_update_phone_with_alphabetic_values ", () => {
+        //act
+        enterProfilePage()
+
+
+        cy.get('.md > div > .md > .item:nth-child(5) > .md').click()
+
+        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').click()
+
+        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').clear().type('This must not be allowed')
+
+        cy.get('.md > div > .form > .buttons > .button:nth-child(2)').click()
+
+        notUpdatedSuccessfullyInterceptor()
+
+        // Clear
+        cy.get('.md > div > .md > .item:nth-child(5) > .md').click()
+
+        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').click()
+
+        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').clear().type('This must not be allowed')
+
+
+    });
+
+
+
+    it("KC-13-3_should_not_update_email_with_invalid_format ", () => {
+        //act
+        enterProfilePage()
+
+
+        cy.get('.md > div > .md > .item:nth-child(2) > .md').click()
+
+        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').click()
+
+        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').clear().type('kanecustomer01')
+
+        cy.get('.md > div > .form > .buttons > .button:nth-child(2)').click()
+
+        notUpdatedSuccessfullyInterceptor()
+
+        // Clear
+        cy.get('.md > div > .md > .item:nth-child(2) > .md').click()
+
+        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').click()
+
+        cy.get('.form > div > .item-interactive > .ng-untouched > .native-input').clear().type('kanecustomer01@mailinator.com')
+
+        cy.get('.md > div > .form > .buttons > .button:nth-child(2)').click()
 
 
     });
