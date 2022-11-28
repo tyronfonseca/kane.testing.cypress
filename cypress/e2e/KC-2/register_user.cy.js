@@ -1,6 +1,6 @@
 describe('register_user', function() {
 
-    it('KC1-1_register_user_with_valid_data', function() {
+    it('KC-1-1_register_user_with_valid_data', function() {
 
         cy.visit('https://kane-customer.web.app/signup')
 
@@ -42,7 +42,7 @@ describe('register_user', function() {
 
     })
 
-    it('KC1-2_not_able_to_register_user_with_invalid_password', function() {
+    it('KC-1-2_not_able_to_register_user_with_invalid_password', function() {
 
         cy.visit('https://kane-customer.web.app/signup')
 
@@ -80,7 +80,7 @@ describe('register_user', function() {
     })
 
 
-    it('KC1-3_not_able_to_register_user_with_invalid_email', function() {
+    it('KC-1-3_not_able_to_register_user_with_invalid_email', function() {
 
         cy.visit('https://kane-customer.web.app/signup')
 
@@ -117,7 +117,7 @@ describe('register_user', function() {
 
     })
 
-    it('KC1-4_not_able_to_register_an_user_whose_password_does_not_match', function() {
+    it('KC-1-4_not_able_to_register_an_user_whose_password_does_not_match', function() {
 
         cy.visit('https://kane-customer.web.app/signup')
 
