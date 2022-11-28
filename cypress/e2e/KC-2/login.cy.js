@@ -24,11 +24,13 @@ describe("Login test", () => {
 
   it("KC-2-2 Invalid email format", () => {
     //arrange
-    cy.visit(Cypress.env("login_url"));
+    cy.visit(Cypress.env("login_url"));    
+    let email_input = cy.get("input[name='email']");
+    let pass_input = cy.get("input[name='password']");
 
     //act
-    cy.get("input[name='email']").type("example.com");
-    cy.get("input[name='password']").type("testUser");
+    email_input.type("example.com");
+    pass_input.type("testUser");
     let btn_login = cy
       .get("ion-button")
       .should("contain", "Iniciar sesión")
@@ -36,19 +38,23 @@ describe("Login test", () => {
 
     //assert button disabled
     btn_login.should("have.attr", "aria-disabled", "true");
+    
+    email_input.clear();
 
 
-    cy.get("input[name='email']").type("@test.com");
-    cy.get("input[name='password']").type("testUser");
-
-    //assert button disabled
-    btn_login.should("have.attr", "aria-disabled", "true");
-
-    cy.get("input[name='email']").type("example@test");
-    cy.get("input[name='password']").type("testUser");
+    email_input.type("@test.com");
+    pass_input.type("testUser");
 
     //assert button disabled
     btn_login.should("have.attr", "aria-disabled", "true");
+    email_input.clear();
+
+    email_input.type("example@test");
+    pass_input.type("testUser");
+
+    //assert button disabled
+    btn_login.should("have.attr", "aria-disabled", "true");
+    email_input.clear();
   });
 
   it("KC-2-3 Short password", () => {
